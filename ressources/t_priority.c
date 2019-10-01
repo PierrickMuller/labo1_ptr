@@ -10,6 +10,16 @@
 /*Barrier variable*/
 pthread_barrier_t barr;
 
+/*Variables */
+int nb_threads;
+unsigned int min_prio;
+unsigned int max_prio;
+unsigned int i;
+unsigned total_iterations;
+
+unsigned int *prio_value;
+long int *nb_iterations;
+
 void *f_thread(void *arg)
 {
   /*...*/
@@ -41,23 +51,25 @@ int main(int argc,char **argv)
   /*Initialize barrier*/
   if(pthread_barrier_init(&barr, NULL, nb_threads))
   {
+
     fprintf(stderr, "Could not initialize barrier!\n");
     return EXIT_FAILURE;
   }
 
   /*Set priorities and create threads*/
-
+  fprintf(stdout,"%d\n",min_prio);
+    fprintf(stdout,"%d\n",max_prio);
 
   /*Wait for the threads to complete and set the results*/
 
   /*...*/
 
-  for(i = 0; i < nb_threads; ++i)
+/*  for(i = 0; i < nb_threads; ++i)
   {
     fprintf(stdout, "[%02d] %ld (%2.0f%%)\n",
     prio_value[i], nb_iterations[i],
     100.0*nb_iterations[i] / total_iterations);
   }
-
+*/
   return EXIT_SUCCESS;
 }
